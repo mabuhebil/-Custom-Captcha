@@ -2,6 +2,7 @@ const spanText = document.querySelector('.imgbox span')
 const reloadBtn = document.querySelector('.mainBox button')
 const checkBtn = document.querySelector('.inputBox  button')
 const input = document.querySelector('input')
+const p = document.querySelector('p')
 
 let allCaracters = ['A', 'B', 'C', 'F', 'H', 'M', 'L', 'K',
     'R', 'Y', 'O', 'P', 'I', 'U', 'T', 'R', 'E', 'Q', 'W',
@@ -29,9 +30,18 @@ checkBtn.addEventListener('click', e => {
     let inputValue = input.value.split('').join(' ')
 
     if (spanText.innerHTML.trim() == inputValue) {
-        console.log('yes')
+        p.style.display = 'block';
+        p.innerHTML = `Nice! You dont appear to be robot`
+        p.style.color = 'aqua';
+        setTimeout(() => {
+            input.value = ''
+            spanText.innerHTML = ''
+            p.innerHTML = ``
+            create();
+        }, 4000);
     } else {
-        console.log('no')
+        p.innerHTML = `Captcha not matched. Please try again!`
+        p.style.color = 'red'
     }
 
 })
